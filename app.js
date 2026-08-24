@@ -18,7 +18,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyDDE4oFkx1NCOspiYjvssG0zpUjoM79WCY",
   authDomain: "weasel-messenger.firebaseapp.com",
   projectId: "weasel-messenger",
-  storageBucket: "weasel-messenger.firebasestorage.app",
+  storageBucket: "weasel-messenger.appspot.com",
   messagingSenderId: "5201389357",
   appId: "1:5201389357:web:0aa5ec26d209979f5815a4",
   measurementId: "G-W1CD52FVK0"
