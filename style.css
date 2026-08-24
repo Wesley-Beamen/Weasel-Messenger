@@ -2,9 +2,50 @@ body {
   background: #111;
   color: #eee;
   font-family: Arial, sans-serif;
-  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
-h1 {
+.container {
+  width: 300px;
+}
+
+.box {
+  background: #222;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.box.hidden {
+  display: none;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 5px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background: #4fc3f7;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #81d4fa;
+}
+
+.switch span {
   color: #4fc3f7;
+  cursor: pointer;
 }
