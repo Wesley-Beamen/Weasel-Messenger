@@ -2,13 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Weasel Messenger</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Weasel Messenger – Login</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <h1>Weasel Messenger</h1>
-  <p>Firebase is loading… check console.</p>
+  <div class="container">
+
+    <h1>Weasel Messenger</h1>
+
+    <!-- Login Form -->
+    <div id="login-box" class="box">
+      <h2>Login</h2>
+      <input id="login-email" type="email" placeholder="Email">
+      <input id="login-password" type="password" placeholder="Password">
+      <button id="login-btn">Login</button>
+      <p class="switch">No account? <span id="show-signup">Sign up</span></p>
+    </div>
+
+    <!-- Signup Form -->
+    <div id="signup-box" class="box hidden">
+      <h2>Sign Up</h2>
+      <input id="signup-email" type="email" placeholder="Email">
+      <input id="signup-password" type="password" placeholder="Password">
+      <input id="signup-username" type="text" placeholder="Username">
+      <button id="signup-btn">Create Account</button>
+      <p class="switch">Already have an account? <span id="show-login">Login</span></p>
+    </div>
+
+  </div>
 
   <script type="module" src="app.js"></script>
 </body>
