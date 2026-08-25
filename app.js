@@ -1,19 +1,21 @@
 // Firebase imports
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { 
-  getAuth, 
-  createUserWithEmailAndPassword, 
-  signInWithEmailAndPassword 
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-import { 
-  getFirestore, 
-  doc, 
-  setDoc, 
-  serverTimestamp 
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-// Your Firebase config
+// Correct Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyDDE4oFkx1NCOspiYjvssG0zpUjoM79WCY",
   authDomain: "weasel-messenger.firebaseapp.com",
@@ -32,7 +34,9 @@ const db = getFirestore(app);
 // UI elements
 const loginBox = document.getElementById("login-box");
 const signupBox = document.getElementById("signup-box");
+const appScreen = document.getElementById("app-screen");
 
+// Switch screens
 document.getElementById("show-signup").onclick = () => {
   loginBox.classList.add("hidden");
   signupBox.classList.remove("hidden");
@@ -42,6 +46,20 @@ document.getElementById("show-login").onclick = () => {
   signupBox.classList.add("hidden");
   loginBox.classList.remove("hidden");
 };
+
+// AUTO LOGIN (Firebase remembers the user)
+onAuthStateChanged(auth, user => {
+  if (user) {
+    // Logged in
+    loginBox.classList.add("hidden");
+    signupBox.classList.add("hidden");
+    appScreen.classList.remove("hidden");
+  } else {
+    // Logged out
+    appScreen.classList.add("hidden");
+    loginBox.classList.remove("hidden");
+  }
+});
 
 // SIGNUP
 document.getElementById("signup-btn").onclick = async () => {
@@ -63,10 +81,7 @@ document.getElementById("signup-btn").onclick = async () => {
       lastOnline: serverTimestamp()
     });
 
-    alert("Account created! You can now log in.");
-    signupBox.classList.add("hidden");
-    loginBox.classList.remove("hidden");
-
+    alert("Account created! Logging you in...");
   } catch (error) {
     alert(error.message);
   }
@@ -80,10 +95,12 @@ document.getElementById("login-btn").onclick = async () => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
     alert("Logged in!");
-    console.log("User logged in:", auth.currentUser.uid);
-
-    // Later you will redirect to your chat page
   } catch (error) {
     alert(error.message);
   }
+};
+
+// LOGOUT
+document.getElementById("logout-btn").onclick = () => {
+  signOut(auth);
 };
